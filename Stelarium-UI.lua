@@ -1845,7 +1845,7 @@ local function Hide(Window, bind, notif)
 	bind = string.split(tostring(bind), "Enum.KeyCode.")
 	bind = bind[2]
 	if notif then
-		Luna:Notification({Title = "Interface Hidden", Content = "The interface has been hidden, you may reopen the interface by Pressing the UI Bind In Settings ("..tostring(bind)..")", Icon = "visibility_off"})
+		Luna:Notification({Title = "Interface Hidden", Content = "Stelarium UI has been hidden, you may reopen the interface by Pressing the UI Bind In Settings ("..tostring(bind)..")", Icon = "visibility_off"})
 	end
 	tween(Window, {BackgroundTransparency = 1})
 	tween(Window.Elements, {BackgroundTransparency = 1})
@@ -2513,22 +2513,11 @@ function Luna:CreateWindow(WindowSettings)
 		end
 
 		local HomeTabPage = Elements.Home
-HomeTabPage.BackgroundTransparency = 1
-HomeTabPage.BorderSizePixel = 0
-for _, child in pairs(HomeTabPage:GetDescendants()) do
-	if child:IsA("Frame") or child:IsA("ImageLabel") then
-		if child.Name:lower():find("background") or child.Name:lower():find("holder") then
-			child.BackgroundTransparency = 1
-			if child:IsA("ImageLabel") then
-				child.ImageTransparency = 1
-			end
-		end
-	end
 		HomeTabPage.Visible = true
 
 		function HomeTab:Activate()
 			tween(HomeTabButton.ImageLabel, {ImageColor3 = Color3.fromRGB(255,255,255)})
-			tween(HomeTabButton, {BackgroundTransparency = 0})
+			tween(HomeTabButton, {BackgroundTransparency = 1})
 			tween(HomeTabButton.UIStroke, {Transparency = 0.41})
 
 			Elements.UIPageLayout:JumpTo(HomeTabPage)
