@@ -2513,6 +2513,17 @@ function Luna:CreateWindow(WindowSettings)
 		end
 
 		local HomeTabPage = Elements.Home
+HomeTabPage.BackgroundTransparency = 1
+HomeTabPage.BorderSizePixel = 0
+for _, child in pairs(HomeTabPage:GetDescendants()) do
+	if child:IsA("Frame") or child:IsA("ImageLabel") then
+		if child.Name:lower():find("background") or child.Name:lower():find("holder") then
+			child.BackgroundTransparency = 1
+			if child:IsA("ImageLabel") then
+				child.ImageTransparency = 1
+			end
+		end
+	end
 		HomeTabPage.Visible = true
 
 		function HomeTab:Activate()
