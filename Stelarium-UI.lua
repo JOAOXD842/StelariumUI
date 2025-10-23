@@ -2278,7 +2278,7 @@ function Luna:CreateWindow(WindowSettings)
 
 	LoadingFrame.Frame.Frame.Title.Text = WindowSettings.LoadingTitle
 	LoadingFrame.Frame.Frame.Subtitle.Text = WindowSettings.LoadingSubtitle
-	LoadingFrame.Version.Text = LoadingFrame.Frame.Frame.Title.Text == "Stelarium Team" and Release or "Stelarium Team"
+	LoadingFrame.Version.Text = LoadingFrame.Frame.Frame.Title.Text == "Stelarium UI" and Release or "Stelarium UI"
 
 	Navigation.Player.icon.ImageLabel.Image = Players:GetUserThumbnailAsync(Players.LocalPlayer.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size48x48)
 	Navigation.Player.Namez.Text = Players.LocalPlayer.DisplayName
@@ -2516,7 +2516,7 @@ function Luna:CreateWindow(WindowSettings)
 		HomeTabPage.Visible = true
 
 		function HomeTab:Activate()
-			tween(HomeTabButton.ImageLabel, {ImageColor3 = Color3.fromRGB(155,55,155)})
+			tween(HomeTabButton.ImageLabel, {ImageColor3 = Color3.fromRGB(255,255,255)})
 			tween(HomeTabButton, {BackgroundTransparency = 0})
 			tween(HomeTabButton.UIStroke, {Transparency = 0.41})
 
@@ -2526,7 +2526,7 @@ function Luna:CreateWindow(WindowSettings)
 
 			for _, OtherTabButton in ipairs(Navigation.Tabs:GetChildren()) do
 				if OtherTabButton.Name ~= "InActive Template" and OtherTabButton.ClassName == "Frame" and OtherTabButton ~= HomeTabButton then
-					tween(OtherTabButton.ImageLabel, {ImageColor3 = Color3.fromRGB(121,121,255)})
+					tween(OtherTabButton.ImageLabel, {ImageColor3 = Color3.fromRGB(221,221,221)})
 					tween(OtherTabButton, {BackgroundTransparency = 1})
 					tween(OtherTabButton.UIStroke, {Transparency = 1})
 				end
