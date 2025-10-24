@@ -8,7 +8,7 @@ Stelarium Hub On Top.
 
 local Release = "Prerelease Beta 6.1"
 
-local Stelarium = { Folder = "Stelarium", Options = {}, ThemeGradient = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(117, 164, 206)), ColorSequenceKeypoint.new(0.50, Color3.fromRGB(123, 201, 201)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(224, 138, 175))} }
+local Luna = { Folder = "Stelarium", Options = {}, ThemeGradient = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(117, 164, 206)), ColorSequenceKeypoint.new(0.50, Color3.fromRGB(123, 201, 201)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(224, 138, 175))} }
 
 local UserInputService = game:GetService("UserInputService")
 local TweenService = game:GetService("TweenService")
@@ -2205,12 +2205,12 @@ end
 function Luna:CreateWindow(WindowSettings)
 
 	WindowSettings = Kwargify({
-		Name = "Luna UI Example Window",
+		Name = "Stelarium UI Example Window",
 		Subtitle = "",
 		LogoID = "6031097225",
 		LoadingEnabled = true,
-		LoadingTitle = "Luna Interface Suite",
-		LoadingSubtitle = "by Nebula Softworks",
+		LoadingTitle = "Stelarium UI Example",
+		LoadingSubtitle = "by Stelarium Team",
 
 		ConfigSettings = {},
 
@@ -6963,4 +6963,4 @@ end
     t1:CreateDropdown({Description = "Special Type - Player", Callback = "", SpecialType = "Player"})
 end]]--
 
-return Stelarium
+return Luna
