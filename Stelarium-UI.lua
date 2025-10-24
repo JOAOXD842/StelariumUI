@@ -2628,22 +2628,6 @@ function Luna:CreateWindow(WindowSettings)
 			end
 		end
 		
--- Acessando todos os botões do dashboard Friends
-local friendsButtons = {
-    HomeTabPage.detailsholder.dashboard.Friends.All,
-    HomeTabPage.detailsholder.dashboard.Friends.Offline,
-    HomeTabPage.detailsholder.dashboard.Friends.Online,
-    HomeTabPage.detailsholder.dashboard.Friends.InGame
-}
-
-for _, button in pairs(friendsButtons) do
-    if button:IsA("GuiObject") then
-        button.BackgroundTransparency = 1 -- deixa transparente
-        -- opcional: se quiser mudar também a cor do texto
-        -- button.Value.TextColor3 = Color3.new(1,1,1)
-    end
-end
-
 		local function format(Int)
 			return string.format("%02i", Int)
 		end
@@ -2676,7 +2660,18 @@ end
 				checkFriends()
 			end
 		end)()
-
+		
+task.spawn(function()
+    task.wait(0.1) -- pequeno atraso pra garantir que o frame carregou
+    for _, obj in pairs(game.CoreGui:GetDescendants()) do
+        if obj:IsA("Frame") and obj.Name:lower():find("home") then
+            obj.BackgroundTransparency = 1
+            obj.BorderSizePixel = 0
+        elseif obj:IsA("ImageLabel") and obj.Name:lower():find("background") then
+            obj.ImageTransparency = 1
+        end
+    end
+end)
 		-- Stolen From Sirius Stuff ends here
 
 	end
