@@ -6963,4 +6963,43 @@ end
     t1:CreateDropdown({Description = "Special Type - Player", Callback = "", SpecialType = "Player"})
 end]]--
 
+-- 🌌 Auto Background Override para LunaUI
+task.defer(function()
+	local CoreGui = game:GetService("CoreGui")
+	local LunaUI = CoreGui:FindFirstChild("Luna UI") or CoreGui:FindFirstChild("LunaUI")
+	if not LunaUI then
+		for _, obj in ipairs(CoreGui:GetDescendants()) do
+			if obj.Name:find("Luna") and obj:IsA("ScreenGui") then
+				LunaUI = obj
+				break
+			end
+		end
+	end
+
+	if LunaUI then
+		-- Remove qualquer fundo anterior
+		local oldBG = LunaUI:FindFirstChild("AutoBackground")
+		if oldBG then oldBG:Destroy() end
+
+		-- Cria o novo fundo
+		local bg = Instance.new("ImageLabel")
+		bg.Name = "AutoBackground"
+		bg.Parent = LunaUI
+		bg.Size = UDim2.new(1, 0, 1, 0)
+		bg.Position = UDim2.new(0, 0, 0, 0)
+		bg.BackgroundTransparency = 1
+		bg.Image = "rbxassetid://76378045602629"
+		bg.ScaleType = Enum.ScaleType.Stretch
+		bg.ZIndex = 0
+
+		-- Garante que todos os elementos fiquem acima
+		for _, ui in ipairs(LunaUI:GetDescendants()) do
+			if ui:IsA("GuiObject") and ui ~= bg then
+				ui.ZIndex += 1
+			end
+		end
+	end
+end)
+
+
 return Luna
