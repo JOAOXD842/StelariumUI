@@ -2517,7 +2517,7 @@ function Luna:CreateWindow(WindowSettings)
 
 		function HomeTab:Activate()
 			tween(HomeTabButton.ImageLabel, {ImageColor3 = Color3.fromRGB(255,255,255)})
-			tween(HomeTabButton, {BackgroundTransparency = 1})
+			tween(HomeTabButton, {BackgroundTransparency = 0})
 			tween(HomeTabButton.UIStroke, {Transparency = 0.41})
 
 			Elements.UIPageLayout:JumpTo(HomeTabPage)
@@ -2627,6 +2627,22 @@ function Luna:CreateWindow(WindowSettings)
 				friendsCooldown -= 1
 			end
 		end
+		
+-- Acessando todos os botões do dashboard Friends
+local friendsButtons = {
+    HomeTabPage.detailsholder.dashboard.Friends.All,
+    HomeTabPage.detailsholder.dashboard.Friends.Offline,
+    HomeTabPage.detailsholder.dashboard.Friends.Online,
+    HomeTabPage.detailsholder.dashboard.Friends.InGame
+}
+
+for _, button in pairs(friendsButtons) do
+    if button:IsA("GuiObject") then
+        button.BackgroundTransparency = 1 -- deixa transparente
+        -- opcional: se quiser mudar também a cor do texto
+        -- button.Value.TextColor3 = Color3.new(1,1,1)
+    end
+end
 
 		local function format(Int)
 			return string.format("%02i", Int)
