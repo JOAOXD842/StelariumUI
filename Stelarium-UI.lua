@@ -6966,29 +6966,32 @@ end]]--
 -- 🔧 CONFIGURAÇÕES
 local IMAGE_ID = "rbxassetid://76378045602629" -- << substitui pelo ID da imagem
 
--- 🔥 SCRIPT AUTO-APLICADOR DE FUNDO
-local PlayerGui = game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui")
 
--- Tenta encontrar qualquer ScreenGui
-for _, gui in ipairs(PlayerGui:GetChildren()) do
-	if gui:IsA("ScreenGui") then
-		-- Cria o ImageLabel de fundo
-		local bg = Instance.new("ImageLabel")
-		bg.Name = "AutoBackground"
-		bg.Parent = gui
-		bg.Size = UDim2.new(1, 0, 1, 0)
-		bg.Position = UDim2.new(0, 0, 0, 0)
-		bg.BackgroundTransparency = 1
-		bg.Image = IMAGE_ID
-		bg.ScaleType = Enum.ScaleType.Stretch
-		bg.ZIndex = 0
-		
-		-- Garante que o fundo fique sempre atrás
-		for _, element in ipairs(gui:GetDescendants()) do
-			if element:IsA("GuiObject") and element ~= bg then
-				element.ZIndex += 1
-			end
-		end
+-- 🔥 SCRIPT AUTO BACKGROUND PARA O LUN AUI
+local PlayerGui = game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui")
+local LunaUI = PlayerGui:WaitForChild("LunaUI")
+
+-- Remove fundo anterior se já existir
+local oldBG = LunaUI:FindFirstChild("AutoBackground")
+if oldBG then
+	oldBG:Destroy()
+end
+
+-- Cria o fundo
+local bg = Instance.new("ImageLabel")
+bg.Name = "AutoBackground"
+bg.Parent = LunaUI
+bg.Size = UDim2.new(1, 0, 1, 0)
+bg.Position = UDim2.new(0, 0, 0, 0)
+bg.BackgroundTransparency = 1
+bg.Image = IMAGE_ID
+bg.ScaleType = Enum.ScaleType.Stretch
+bg.ZIndex = 0
+
+-- Mantém o fundo sempre atrás dos outros elementos
+for _, element in ipairs(LunaUI:GetDescendants()) do
+	if element:IsA("GuiObject") and element ~= bg then
+		element.ZIndex += 1
 	end
 end
 
