@@ -2558,7 +2558,16 @@ function Luna:CreateWindow(WindowSettings)
 				break
 			end
 		end
-
+-- Deixa todos os elementos dentro das tabs transparentes
+for _, tab in pairs(Window.Tabs or {}) do
+    if tab.Frame then
+        for _, child in pairs(tab.Frame:GetChildren()) do
+            if child:IsA("Frame") or child:IsA("TextLabel") or child:IsA("ImageLabel") then
+                child.BackgroundTransparency = 1
+            end
+        end
+    end
+end
 		-- Stolen From Sirius Stuff Begins Here
 
 		HomeTabPage.detailsholder.dashboard.Discord.Interact.MouseButton1Click:Connect(function()
@@ -2660,18 +2669,6 @@ function Luna:CreateWindow(WindowSettings)
 				checkFriends()
 			end
 		end)()
-		
-task.spawn(function()
-    task.wait(0.1) -- pequeno atraso pra garantir que o frame carregou
-    for _, obj in pairs(game.CoreGui:GetDescendants()) do
-        if obj:IsA("Frame") and obj.Name:lower():find("home") then
-            obj.BackgroundTransparency = 1
-            obj.BorderSizePixel = 0
-        elseif obj:IsA("ImageLabel") and obj.Name:lower():find("background") then
-            obj.ImageTransparency = 1
-        end
-    end
-end)
 		-- Stolen From Sirius Stuff ends here
 
 	end
