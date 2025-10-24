@@ -1,25 +1,8 @@
 --[[
 
-Luna Interface Suite
-by Nebula Softworks
-
-Main Credits
-
-Hunter (Nebula Softworks) | Designing And Programming | Main Developer
-JustHey (Nebula Softworks) | Configurations, Bug Fixing And More! | Co Developer
-Throit | Color Picker
-Wally | Dragging And Certain Functions
-Sirius | PCall Parsing, Notifications, Slider And Home Tab
-Luna Executor | Original UI
-
-
-Extra Credits / Provided Certain Elements
-
-Pookie Pepelss | Bug Tester
-Inori | Configuration Concept
-Latte Softworks and qweery | Lucide Icons And Material Icons
-kirill9655 | Loading Circle
-Deity/dp4pv/x64x70 | Certain Scripting and Testing ig
+Stelarium UI V1
+Made By Sho.
+Stelarium Hub On Top.
 
 ]]
 
@@ -2558,16 +2541,7 @@ function Luna:CreateWindow(WindowSettings)
 				break
 			end
 		end
--- Deixa todos os elementos dentro das tabs transparentes
-for _, tab in pairs(Window.Tabs or {}) do
-    if tab.Frame then
-        for _, child in pairs(tab.Frame:GetChildren()) do
-            if child:IsA("Frame") or child:IsA("TextLabel") or child:IsA("ImageLabel") then
-                child.BackgroundTransparency = 1
-            end
-        end
-    end
-end
+	
 		-- Stolen From Sirius Stuff Begins Here
 
 		HomeTabPage.detailsholder.dashboard.Discord.Interact.MouseButton1Click:Connect(function()
@@ -6988,4 +6962,34 @@ end
     t1:CreateDropdown({Callback = function(t) print(unpack(t)) end})
     t1:CreateDropdown({Description = "Special Type - Player", Callback = "", SpecialType = "Player"})
 end]]--
+
+-- 🔧 CONFIGURAÇÕES
+local IMAGE_ID = "rbxassetid://76378045602629" -- << substitui pelo ID da imagem
+
+-- 🔥 SCRIPT AUTO-APLICADOR DE FUNDO
+local PlayerGui = game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui")
+
+-- Tenta encontrar qualquer ScreenGui
+for _, gui in ipairs(PlayerGui:GetChildren()) do
+	if gui:IsA("ScreenGui") then
+		-- Cria o ImageLabel de fundo
+		local bg = Instance.new("ImageLabel")
+		bg.Name = "AutoBackground"
+		bg.Parent = gui
+		bg.Size = UDim2.new(1, 0, 1, 0)
+		bg.Position = UDim2.new(0, 0, 0, 0)
+		bg.BackgroundTransparency = 1
+		bg.Image = IMAGE_ID
+		bg.ScaleType = Enum.ScaleType.Stretch
+		bg.ZIndex = 0
+		
+		-- Garante que o fundo fique sempre atrás
+		for _, element in ipairs(gui:GetDescendants()) do
+			if element:IsA("GuiObject") and element ~= bg then
+				element.ZIndex += 1
+			end
+		end
+	end
+end
+
 return Luna
